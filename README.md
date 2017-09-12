@@ -1,2 +1,2 @@
 # doctor-peppers-android
-ふがふが
+ぽよぽよ
