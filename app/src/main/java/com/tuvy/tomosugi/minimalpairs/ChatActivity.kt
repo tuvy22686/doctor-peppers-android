@@ -10,8 +10,5 @@ class ChatActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_chat)
 
-        val textView: TextView
-        textView = findViewById(R.id.testTextView) as TextView
-        textView.setText("test")
     }
 }
