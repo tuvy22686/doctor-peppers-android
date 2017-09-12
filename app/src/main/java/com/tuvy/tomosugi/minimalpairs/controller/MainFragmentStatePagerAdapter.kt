@@ -3,7 +3,7 @@ package com.tuvy.tomosugi.minimalpairs.controller
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentStatePagerAdapter
-import com.tuvy.tomosugi.minimalpairs.view.MessageListFragment
+import com.tuvy.tomosugi.minimalpairs.view.MatchingListFragment
 import com.tuvy.tomosugi.minimalpairs.view.UserListFragment
 
 /**
@@ -15,7 +15,7 @@ class MainFragmentStatePagerAdapter(fm: FragmentManager) : FragmentStatePagerAda
     override fun getItem(i: Int): Fragment {
         when (i) {
             0 -> return UserListFragment()
-            else -> return MessageListFragment()
+            else -> return MatchingListFragment()
         }
     }
 
