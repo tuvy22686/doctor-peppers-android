@@ -10,7 +10,7 @@ class MessageActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_message)
 
-        var textView: TextView
+        val textView: TextView
         textView = findViewById(R.id.testTextView) as TextView
         textView.setText("test")
     }
