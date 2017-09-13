@@ -32,7 +32,7 @@ class ChatRecyclerViewAdapter(private val data: List<Message>) : RecyclerView.Ad
         Glide
                 .with(holder.partnerIcon.context)
                 .load("")
-                .placeholder(R.drawable.hamutaro)
+                .placeholder(R.mipmap.ic_launcher)
                 .into(holder.partnerIcon)
     }
 
