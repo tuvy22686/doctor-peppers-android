@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.bumptech.glide.Glide
 import com.tuvy.tomosugi.minimalpairs.R
 import com.tuvy.tomosugi.minimalpairs.model.Message
 import com.tuvy.tomosugi.minimalpairs.view.MessageViewHolder
@@ -26,6 +27,12 @@ class ChatRecyclerViewAdapter(private val data: List<Message>) : RecyclerView.Ad
 
         holder as MessageViewHolder
         holder.messageView.text = "Message: " + data[position].message
+
+        Glide
+                .with(holder.partnerIcon.context)
+                .load("")
+                .placeholder(R.mipmap.ic_launcher)
+                .into(holder.partnerIcon)
 
     }
 
