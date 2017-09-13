@@ -18,7 +18,8 @@ class ChatActivity : AppCompatActivity() {
         val rv = findViewById(R.id.massageRecyclewView) as RecyclerView
         val llm = LinearLayoutManager(this)
 
-        val data: List<Message> = List(3, { index -> Message(index.toString())})
+//        val data: List<Message> = List(3, { index -> Message(index.toString())})
+        val data: List<Message> = List(3, { index -> Message("aaaaaaaa\naaaaaaaa\naaaaaaaa\naaaaaaaa\naaaaaaaa\naaaaaaaa\naaaaaaaa\naaaaaaaa\n")})
 
         rv.setHasFixedSize(true)
         rv.layoutManager = llm

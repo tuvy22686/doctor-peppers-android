@@ -19,10 +19,14 @@
         app:civ_border_color="@android:color/darker_gray" />
 
     <TextView
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
         android:id="@+id/message"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="test message"
-        android:textSize="30sp" />
+        android:background="@drawable/fukidashi"
+        android:textSize="20sp" />
 
 </LinearLayout>
