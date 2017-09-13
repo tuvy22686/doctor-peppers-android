@@ -35,6 +35,7 @@ class MatchingRecyclerViewAdapter(private val data: List<User>) : RecyclerView.A
         holder.layout.setOnClickListener {
             val context = holder.partnerName.context
             val intent = Intent(context, ChatActivity::class.java)
+            intent.putExtra("partnerId", data[position].id)
             context.startActivity(intent)
         }
 
