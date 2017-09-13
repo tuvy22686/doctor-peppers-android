@@ -5,13 +5,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.tuvy.tomosugi.minimalpairs.R
+import com.tuvy.tomosugi.minimalpairs.model.User
 import com.tuvy.tomosugi.minimalpairs.view.PartnerViewHolder
 
 /**
  * Created by tomosugi on 2017/09/12.
  */
 
-class MatchingRecyclerViewAdapter(private val data: String) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class MatchingRecyclerViewAdapter(private val data: List<User>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val inflate: View
@@ -27,10 +28,10 @@ class MatchingRecyclerViewAdapter(private val data: String) : RecyclerView.Adapt
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
 
         holder as PartnerViewHolder
-        //holder.idView = data[].id
+        holder.idView.text = "User: " + data[position].id.toString()
     }
 
     override fun getItemCount(): Int {
-        return 1
+        return data.size
     }
 }

@@ -12,6 +12,7 @@ import android.widget.Button
 import com.tuvy.tomosugi.minimalpairs.ChatActivity
 import com.tuvy.tomosugi.minimalpairs.R
 import com.tuvy.tomosugi.minimalpairs.controller.MatchingRecyclerViewAdapter
+import com.tuvy.tomosugi.minimalpairs.model.User
 
 /**
  * Created by tomosugi on 2017/09/11.
@@ -28,8 +29,11 @@ class MatchingListFragment : Fragment() {
         val rv = activity.findViewById(R.id.matchingRecyclerView) as RecyclerView
         val llm = LinearLayoutManager(context)
 
+        // データセットの作成
+        val data: List<User> = List(3, { index -> User(index) })
+
         rv.setHasFixedSize(true)
         rv.layoutManager = llm
-        rv.adapter = MatchingRecyclerViewAdapter("Test")
+        rv.adapter = MatchingRecyclerViewAdapter(data)
     }
 }
