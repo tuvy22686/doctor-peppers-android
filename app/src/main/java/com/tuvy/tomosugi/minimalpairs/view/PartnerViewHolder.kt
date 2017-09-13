@@ -7,10 +7,6 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import com.tuvy.tomosugi.minimalpairs.R
 
-/**
- * Created by tomosugi on 2017/09/12.
- */
-
 class PartnerViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     var layout: LinearLayout
     var partnerName: TextView
