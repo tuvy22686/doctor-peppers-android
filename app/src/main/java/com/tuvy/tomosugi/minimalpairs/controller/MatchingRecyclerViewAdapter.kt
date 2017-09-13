@@ -11,10 +11,6 @@ import com.tuvy.tomosugi.minimalpairs.R
 import com.tuvy.tomosugi.minimalpairs.model.User
 import com.tuvy.tomosugi.minimalpairs.view.PartnerViewHolder
 
-/**
- * Created by tomosugi on 2017/09/12.
- */
-
 class MatchingRecyclerViewAdapter(private val data: List<User>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
