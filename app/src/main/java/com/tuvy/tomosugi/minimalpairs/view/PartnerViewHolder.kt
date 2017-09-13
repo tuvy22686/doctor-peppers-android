@@ -1,12 +1,8 @@
 package com.tuvy.tomosugi.minimalpairs.view
 
-import android.content.Context
-import android.content.Intent
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.widget.Button
-import android.widget.TextView
-import com.tuvy.tomosugi.minimalpairs.ChatActivity
 import com.tuvy.tomosugi.minimalpairs.R
 
 /**
