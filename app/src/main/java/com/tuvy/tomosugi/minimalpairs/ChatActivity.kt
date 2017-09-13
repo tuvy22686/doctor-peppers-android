@@ -19,7 +19,7 @@ class ChatActivity : AppCompatActivity() {
         val llm = LinearLayoutManager(this)
 
 //        val data: List<Message> = List(3, { index -> Message(index.toString())})
-        val data: List<Message> = List(3, { index -> Message("aaaaaaaa\naaaaaaaa\naaaaaaaa\naaaaaaaa\naaaaaaaa\naaaaaaaa\naaaaaaaa\naaaaaaaa\n")})
+        val data: List<Message> = List(3, { index -> Message(partnerName = "ハム太郎" , message = "へけっ\nへけっ\nへけっ\nへけっ\nへけっ\nへけっ")})
 
         rv.setHasFixedSize(true)
         rv.layoutManager = llm

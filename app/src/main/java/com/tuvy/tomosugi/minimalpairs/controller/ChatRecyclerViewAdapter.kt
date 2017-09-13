@@ -26,14 +26,14 @@ class ChatRecyclerViewAdapter(private val data: List<Message>) : RecyclerView.Ad
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
 
         holder as MessageViewHolder
-        holder.messageView.text = "Message: " + data[position].message
+        holder.messageView.text = data[position].message
+        holder.partnerName.text = data[position].partnerName
 
         Glide
                 .with(holder.partnerIcon.context)
                 .load("")
-                .placeholder(R.mipmap.ic_launcher)
+                .placeholder(R.drawable.hamutaro)
                 .into(holder.partnerIcon)
-
     }
 
     override fun getItemCount(): Int {
