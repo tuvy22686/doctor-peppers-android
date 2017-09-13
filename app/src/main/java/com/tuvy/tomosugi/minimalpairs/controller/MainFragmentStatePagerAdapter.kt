@@ -20,6 +20,11 @@ class MainFragmentStatePagerAdapter(fm: FragmentManager) : FragmentStatePagerAda
     }
 
     override fun getPageTitle(position: Int): CharSequence {
-        return "Page" + position
+        if (position == 0) {
+            return "さがす"
+        }
+        else {
+            return "メッセージ"
+        }
     }
 }

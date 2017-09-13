@@ -1,18 +1,20 @@
 package com.tuvy.tomosugi.minimalpairs.view
 
-import android.content.Context
-import android.content.Intent
 import android.support.v7.widget.RecyclerView
 import android.view.View
-import android.widget.Button
+import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
-import com.tuvy.tomosugi.minimalpairs.ChatActivity
 import com.tuvy.tomosugi.minimalpairs.R
 
 class PartnerViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-    var partnerView: Button
+    var layout: LinearLayout
+    var partnerName: TextView
+    var partnerIcon: ImageView
 
     init {
-        partnerView = itemView.findViewById(R.id.user_id) as Button
+        layout = itemView.findViewById(R.id.partner) as LinearLayout
+        partnerName = itemView.findViewById(R.id.user_name) as TextView
+        partnerIcon = itemView.findViewById(R.id.user_icon) as ImageView
     }
 }
