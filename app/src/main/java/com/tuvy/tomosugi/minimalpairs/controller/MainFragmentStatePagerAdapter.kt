@@ -6,10 +6,6 @@ import android.support.v4.app.FragmentStatePagerAdapter
 import com.tuvy.tomosugi.minimalpairs.view.MatchingListFragment
 import com.tuvy.tomosugi.minimalpairs.view.UserListFragment
 
-/**
- * Created by tomosugi on 2017/09/11.
- */
-
 class MainFragmentStatePagerAdapter(fm: FragmentManager) : FragmentStatePagerAdapter(fm) {
 
     override fun getItem(i: Int): Fragment {
@@ -24,6 +20,11 @@ class MainFragmentStatePagerAdapter(fm: FragmentManager) : FragmentStatePagerAda
     }
 
     override fun getPageTitle(position: Int): CharSequence {
-        return "Page" + position
+        if (position == 0) {
+            return "さがす"
+        }
+        else {
+            return "メッセージ"
+        }
     }
 }
