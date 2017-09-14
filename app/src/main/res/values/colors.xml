@@ -3,4 +3,8 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="appMainColor">#22C6AA</color>
+    <color name="appSubColor">#a3e5da </color>
+    <color name="appGray">#999999</color>
+    <color name="appBlack">#505050</color>
 </resources>
