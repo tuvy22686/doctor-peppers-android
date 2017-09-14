@@ -11,10 +11,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        var viewPager: ViewPager
-
         setContentView(R.layout.activity_main)
-        viewPager = findViewById(R.id.pager) as ViewPager
+        val viewPager = findViewById(R.id.pager) as ViewPager
         viewPager.adapter = MainFragmentStatePagerAdapter(supportFragmentManager)
     }
 }

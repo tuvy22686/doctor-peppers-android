@@ -21,8 +21,7 @@ import android.util.DisplayMetrics
 class MatchingRecyclerViewAdapter(private val data: List<User>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        val inflate: View
-        inflate = LayoutInflater.from(parent.context).inflate(R.layout.partner, parent, false)
+        val inflate = LayoutInflater.from(parent.context).inflate(R.layout.partner, parent, false)
         return PartnerViewHolder(inflate)
     }
 
