@@ -69,20 +69,11 @@ class ChatActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         var id: Int = item!!.itemId
         if (id == R.id.action_setting) {
-//            Toast.makeText(this, "設定", Toast.LENGTH_LONG).show();
             return true
         }
         return super.onOptionsItemSelected(item);
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-//        super.onActivityResult(requestCode, resultCode, data)
-//        Log.d("onActivityResult", requestCode.toString())
-//
-//        Log.d("onActivityResult", "hello")
-//        Log.d("onActivityResult",data!!.getIntExtra("partnerId", -1).toString())
-
-    }
 
     fun resizeDrawable(drawable: Drawable): Drawable {
         var b: Bitmap = (drawable as BitmapDrawable).bitmap

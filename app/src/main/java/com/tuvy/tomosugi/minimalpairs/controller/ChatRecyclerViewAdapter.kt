@@ -25,10 +25,8 @@ class ChatRecyclerViewAdapter(private val data: List<Message>) : RecyclerView.Ad
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-
         holder as MessageViewHolder
         holder.messageView.text = data[position].text
-        holder.partnerName.text = data[position].partnerId.toString()
 
         Glide
                 .with(holder.partnerIcon.context)

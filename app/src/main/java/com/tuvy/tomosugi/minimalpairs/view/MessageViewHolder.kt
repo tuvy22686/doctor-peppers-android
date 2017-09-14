@@ -8,11 +8,9 @@ import com.tuvy.tomosugi.minimalpairs.R
 
 class MessageViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     var messageView: TextView
-    var partnerName: TextView
     var partnerIcon: ImageView
 
     init {
-        partnerName = itemView.findViewById(R.id.chat_partner_name) as TextView
         messageView = itemView.findViewById(R.id.message) as TextView
         partnerIcon = itemView.findViewById(R.id.chat_partner_icon) as ImageView
     }
