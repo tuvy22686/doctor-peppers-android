@@ -53,11 +53,11 @@ class MinimalPairsClient {
         ): io.reactivex.Observable<HistoryMessage>
 
         @FormUrlEncoded
-        @GET("message/create")
+        @POST("message/create")
         fun post(
-                @Query("user_id") userId: Int,
-                @Query("partner_id") partnerId: Int,
-                @Query("content") text: String
+                @Field("user_id") userId: Int,
+                @Field("partner_id") partnerId: Int,
+                @Field("content") text: String
         ): io.reactivex.Observable<Message>
     }
 }
