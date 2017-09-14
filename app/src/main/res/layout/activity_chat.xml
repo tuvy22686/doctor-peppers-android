@@ -8,6 +8,16 @@
     android:orientation="vertical"
     tools:context="com.tuvy.tomosugi.minimalpairs.ChatActivity">
 
+    <android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/toolbar"
+
+        app:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="?attr/actionBarSize"
+        android:background="@android:color/white" />
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/massageRecyclewView"
         android:layout_width="match_parent"
@@ -34,6 +44,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:focusable="true"
+            android:textCursorDrawable="@android:color/holo_green_dark"
             android:focusableInTouchMode="true" />
 
         <Button

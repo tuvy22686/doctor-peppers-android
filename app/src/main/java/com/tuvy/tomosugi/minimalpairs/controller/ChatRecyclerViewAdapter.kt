@@ -13,6 +13,7 @@ import com.tuvy.tomosugi.minimalpairs.view.MessageViewHolder
 class ChatRecyclerViewAdapter(private val data: List<Message>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+
         val inflate: View
         inflate = LayoutInflater.from(parent.context).inflate(R.layout.message, parent, false)
         return MessageViewHolder(inflate)

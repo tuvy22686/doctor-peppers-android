@@ -30,6 +30,7 @@ class MatchingListFragment : Fragment() {
         val data: List<User> = List(3, { index -> User(index) })
 
         rv.setHasFixedSize(true)
+        rv.addItemDecoration(DividerItemDecoration(context))
         rv.layoutManager = llm
         rv.adapter = MatchingRecyclerViewAdapter(data)
     }
