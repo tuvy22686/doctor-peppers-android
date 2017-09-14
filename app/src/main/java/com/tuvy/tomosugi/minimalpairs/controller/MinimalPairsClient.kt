@@ -1,5 +1,6 @@
 package com.tuvy.tomosugi.minimalpairs.controller
 
+import android.util.Log
 import com.tuvy.tomosugi.minimalpairs.model.HistoryMessage
 import com.tuvy.tomosugi.minimalpairs.model.Message
 import retrofit2.Retrofit
@@ -30,6 +31,7 @@ class MinimalPairsClient {
     }
 
     fun post(userId: Int, partnerId: Int, text: String): io.reactivex.Observable<Message> {
+        Log.d("Client.post", "check")
         val retrofit = Retrofit.Builder()
                 .baseUrl(endpoint)
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
