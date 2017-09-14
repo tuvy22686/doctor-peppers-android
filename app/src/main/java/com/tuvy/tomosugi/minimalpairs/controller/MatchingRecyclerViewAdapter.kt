@@ -35,11 +35,33 @@ class MatchingRecyclerViewAdapter(private val data: List<User>) : RecyclerView.A
             context.startActivity(intent)
         }
 
-        Glide
-                .with(holder.partnerIcon.context)
-                .load("")
-                .placeholder(R.mipmap.ic_launcher)
-                .into(holder.partnerIcon)
+        if (position == 0) {
+            holder.partnerName.text = "yuka"
+            holder.partnerStatus.text = "yukaさんとマッチングしました"
+            Glide
+                    .with(holder.partnerIcon.context)
+                    .load("")
+                    .placeholder(R.drawable.girl_1)
+                    .into(holder.partnerIcon)
+        }
+        else if (position == 1) {
+            holder.partnerName.text = "aki"
+            holder.partnerStatus.text = "akiさんとマッチングしました"
+            Glide
+                    .with(holder.partnerIcon.context)
+                    .load("")
+                    .placeholder(R.drawable.girl_2)
+                    .into(holder.partnerIcon)
+        }
+        else {
+            holder.partnerName.text = "sayuri"
+            holder.partnerStatus.text = "sayuriさんとマッチングしました"
+            Glide
+                    .with(holder.partnerIcon.context)
+                    .load("")
+                    .placeholder(R.drawable.girl_3)
+                    .into(holder.partnerIcon)
+        }
     }
 
     override fun getItemCount(): Int {
