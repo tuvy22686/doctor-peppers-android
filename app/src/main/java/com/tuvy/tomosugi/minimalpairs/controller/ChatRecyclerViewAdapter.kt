@@ -32,7 +32,7 @@ class ChatRecyclerViewAdapter(private val data: List<Message>) : RecyclerView.Ad
 
 //        holder.userIconView.setImageBitmap(list[position].bitmap)
 
-
+//
 //        if (data[position].partnerId == 0) {
 //            holder.partnerIcon = LayoutInflater.from(holder.partnerIcon.context).inflate(R.drawable.girl_1, null, true) as ImageView
 //        } else if(data[position].partnerId == 1) {
@@ -40,12 +40,35 @@ class ChatRecyclerViewAdapter(private val data: List<Message>) : RecyclerView.Ad
 //        } else if(data[position].partnerId == 2) {
 //            holder.partnerIcon = LayoutInflater.from(holder.partnerIcon.context).inflate(R.drawable.girl_3, null, true) as ImageView
 //        }
+//
+//        Glide
+//                .with(holder.partnerIcon.context)
+//                .load("")
+//                .placeholder(R.mipmap.ic_launcher)
+//                .into(holder.partnerIcon)
 
-        Glide
-                .with(holder.partnerIcon.context)
-                .load("")
-                .placeholder(R.mipmap.ic_launcher)
-                .into(holder.partnerIcon)
+        //TODO チャットでのiconにpartnerの画像を載せるようにする
+        if (data[position].partnerId == 0) {
+            Glide
+                    .with(holder.partnerIcon.context)
+                    .load("")
+                    .placeholder(R.drawable.girl_1)
+                    .into(holder.partnerIcon)
+        }
+        else if (data[position].partnerId == 1) {
+            Glide
+                    .with(holder.partnerIcon.context)
+                    .load("")
+                    .placeholder(R.drawable.girl_2)
+                    .into(holder.partnerIcon)
+        }
+        else {
+            Glide
+                    .with(holder.partnerIcon.context)
+                    .load("")
+                    .placeholder(R.drawable.girl_3)
+                    .into(holder.partnerIcon)
+        }
 
     }
 
