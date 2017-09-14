@@ -19,24 +19,24 @@ class MainActivity : AppCompatActivity() {
 
         Stetho.initializeWithDefaults(this)
 
-        // メッセージ送信用API(テスト)
-        client.post(1, 2, "hello")
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .doOnSubscribe {
-                    Log.d("post", "doOnSubscribe")
-                }
-                .doOnError {
-                    Log.d("post", "doOnError")
-                }
-                .doOnNext {
-                    Log.d("post", "doOnNext")
-                }
-                .subscribe {
-                    Log.d("post", "subscribe")
-                }
+//        // メッセージ送信用API(テスト)
+//        client.post(1, 2, "hello")
+//                .subscribeOn(Schedulers.io())
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .doOnSubscribe {
+//                    Log.d("post", "doOnSubscribe")
+//                }
+//                .doOnError {
+//                    Log.d("post", "doOnError")
+//                }
+//                .doOnNext {
+//                    Log.d("post", "doOnNext")
+//                }
+//                .subscribe {
+//                    Log.d("post", "subscribe")
+//                }
 
-//        プロフィール取得用API(テスト)
+//        //プロフィール取得用API(テスト)
 //        client.getProfile()
 //                .subscribeOn(Schedulers.io())
 //                .observeOn(AndroidSchedulers.mainThread())
@@ -53,6 +53,24 @@ class MainActivity : AppCompatActivity() {
 //                    Log.d("getProfile", "subscribe")
 //                    Log.d("getProfile", it.name)
 //                }
+
+        //会話履歴取得用API(テスト)
+        client.history(userId = 1, partnerId = 2)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe {
+                    Log.d("getProfile", "doOnSubscribe")
+                }
+                .doOnError {
+                    Log.d("getProfile", "doOnError")
+                }
+                .doOnNext {
+                    Log.d("getProfile", "doOnNext")
+                }
+                .subscribe {
+                    Log.d("getProfile", "subscribe")
+                }
+
 
         setContentView(R.layout.activity_main)
         val viewPager = findViewById(R.id.pager) as ViewPager
