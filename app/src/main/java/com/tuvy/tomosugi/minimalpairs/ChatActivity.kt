@@ -36,29 +36,24 @@ class ChatActivity : AppCompatActivity() {
         kimochiButton.setOnClickListener {
             setContentView(R.layout.activity_chat_first)
 
-            var popup = LongPressPopupBuilder(this)
-                    .setTarget(btn)
-                    //.setPopupView(textView)// Not using this time
-                    .setPopupView(R.layout.popup_layout, this)
-                    .setLongPressDuration(750)
-                    .setDismissOnLongPressStop(false)
-                    .setDismissOnTouchOutside(false)
-                    .setDismissOnBackPressed(false)
-                    .setCancelTouchOnDragOutsideView(true)
-                    .setLongPressReleaseListener(this)
-                    .setOnHoverListener(this)
-                    .setPopupListener(this)
-                    .setTag("PopupFoo")
-                    .setAnimationType(LongPressPopup.ANIMATION_TYPE_FROM_CENTER)
-                    .build();
-
-            onViewIn
-
-
+//            var popup = LongPressPopupBuilder(this)
+//                    .setTarget(btn)
+//                    //.setPopupView(textView)// Not using this time
+//                    .setPopupView(R.layout.popup_layout, this)
+//                    .setLongPressDuration(750)
+//                    .setDismissOnLongPressStop(false)
+//                    .setDismissOnTouchOutside(false)
+//                    .setDismissOnBackPressed(false)
+//                    .setCancelTouchOnDragOutsideView(true)
+//                    .setLongPressReleaseListener(this)
+//                    .setOnHoverListener(this)
+//                    .setPopupListener(this)
+//                    .setTag("PopupFoo")
+//                    .setAnimationType(LongPressPopup.ANIMATION_TYPE_FROM_CENTER)
+//                    .build();
+//
+//            onViewIn
         }
-
-
-
 
         //「キャンセル」ボタンを押して遷移
         cancelButton.setOnClickListener {
