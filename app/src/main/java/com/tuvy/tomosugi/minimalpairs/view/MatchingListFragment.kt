@@ -27,7 +27,7 @@ class MatchingListFragment : Fragment() {
         val llm = LinearLayoutManager(context)
 
         // データセットの作成
-        val data: List<User> = List(3, { index -> User(index) })
+        val data: List<User> = List(3, { id -> User(id=id, name="Tester", gender = 1, job="学生", age = 24) })
 
         rv.setHasFixedSize(true)
         rv.addItemDecoration(DividerItemDecoration(context))

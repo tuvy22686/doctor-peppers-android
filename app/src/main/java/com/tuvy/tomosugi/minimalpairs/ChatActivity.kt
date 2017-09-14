@@ -1,5 +1,6 @@
 package com.tuvy.tomosugi.minimalpairs
 
+import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.Matrix
 import android.graphics.drawable.BitmapDrawable
@@ -10,6 +11,7 @@ import android.os.Bundle
 import android.support.v4.content.res.ResourcesCompat
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.LinearLayout
@@ -28,20 +30,31 @@ class ChatActivity : AppCompatActivity() {
         val toolbar: android.support.v7.widget.Toolbar = findViewById(R.id.toolbar) as android.support.v7.widget.Toolbar
         setSupportActionBar(toolbar)
 
+        var intent = intent
+        var partnerId: Int = intent.getIntExtra("partnerId", -1)
+        var partnerName = when(partnerId) {
+            0 -> "零マン"
+            1 -> "おとこ"
+            2 -> "おんな"
+            else -> "null子"
+        }
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowHomeEnabled(true)
-        supportActionBar?.title = "partnerName"
         supportActionBar?.setHomeAsUpIndicator(resizeDrawable(resources.getDrawable(R.drawable.arrow)))
-
+        supportActionBar?.title = partnerName
         toolbar.setNavigationOnClickListener {
             onBackPressed()
+        }
+
+        if (intent != null) {
+            Log.d("onCreate", intent.getIntExtra("partnerId", -1).toString())
         }
 
         val rv = findViewById(R.id.massageRecyclewView) as RecyclerView
         val llm = LinearLayoutManager(this)
 
 //        val data: List<Message> = List(3, { index -> Message(index.toString())})
-        val data: List<Message> = List(3, { index -> Message(partnerName = "太郎", message = "へけっ\nへけっ\nへけっ\nへけっ\nへけっ\nへけっ") })
+        val data: List<Message> = List(3, { timestamp -> Message(partnerId = 1, userId = 2, fromMe = 1, timestamp = timestamp, text = "hello")})
 
         rv.setHasFixedSize(true)
         rv.layoutManager = llm
@@ -56,11 +69,11 @@ class ChatActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         var id: Int = item!!.itemId
         if (id == R.id.action_setting) {
-//            Toast.makeText(this, "設定", Toast.LENGTH_LONG).show();
             return true
         }
         return super.onOptionsItemSelected(item);
     }
+
 
     fun resizeDrawable(drawable: Drawable): Drawable {
         var b: Bitmap = (drawable as BitmapDrawable).bitmap
