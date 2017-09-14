@@ -12,7 +12,7 @@
         <android.support.v4.view.PagerTabStrip
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="top"
+            android:layout_gravity="bottom"
             android:background="#FFFFFF"
             android:textColor="@color/appMainColor"
             android:padding="10dp"
