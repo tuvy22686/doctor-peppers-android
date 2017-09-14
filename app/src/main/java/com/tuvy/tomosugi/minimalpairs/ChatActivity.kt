@@ -1,5 +1,6 @@
 package com.tuvy.tomosugi.minimalpairs
 
+import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.Matrix
 import android.graphics.drawable.BitmapDrawable
@@ -10,6 +11,7 @@ import android.os.Bundle
 import android.support.v4.content.res.ResourcesCompat
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.LinearLayout
@@ -28,13 +30,24 @@ class ChatActivity : AppCompatActivity() {
         val toolbar: android.support.v7.widget.Toolbar = findViewById(R.id.toolbar) as android.support.v7.widget.Toolbar
         setSupportActionBar(toolbar)
 
+        var intent = intent
+        var partnerId: Int = intent.getIntExtra("partnerId", -1)
+        var partnerName = when(partnerId) {
+            0 -> "零マン"
+            1 -> "おとこ"
+            2 -> "おんな"
+            else -> "null子"
+        }
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowHomeEnabled(true)
-        supportActionBar?.title = "partnerName"
         supportActionBar?.setHomeAsUpIndicator(resizeDrawable(resources.getDrawable(R.drawable.arrow)))
-
+        supportActionBar?.title = partnerName
         toolbar.setNavigationOnClickListener {
             onBackPressed()
+        }
+
+        if (intent != null) {
+            Log.d("onCreate", intent.getIntExtra("partnerId", -1).toString())
         }
 
         val rv = findViewById(R.id.massageRecyclewView) as RecyclerView
@@ -60,6 +73,15 @@ class ChatActivity : AppCompatActivity() {
             return true
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+//        super.onActivityResult(requestCode, resultCode, data)
+//        Log.d("onActivityResult", requestCode.toString())
+//
+//        Log.d("onActivityResult", "hello")
+//        Log.d("onActivityResult",data!!.getIntExtra("partnerId", -1).toString())
+
     }
 
     fun resizeDrawable(drawable: Drawable): Drawable {
