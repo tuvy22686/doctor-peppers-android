@@ -1,20 +1,14 @@
 package com.tuvy.tomosugi.minimalpairs.controller
 
-import android.content.Context
 import android.content.Intent
-import android.graphics.Canvas
-import android.graphics.Rect
-import android.graphics.drawable.Drawable
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import com.bumptech.glide.Glide
 import com.tuvy.tomosugi.minimalpairs.ChatActivity
 import com.tuvy.tomosugi.minimalpairs.R
 import com.tuvy.tomosugi.minimalpairs.model.User
 import com.tuvy.tomosugi.minimalpairs.view.PartnerViewHolder
-import android.util.DisplayMetrics
 
 
 
