@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.view.ViewPager
 import android.util.Log
+import com.facebook.stetho.Stetho
 import com.tuvy.tomosugi.minimalpairs.controller.MainFragmentStatePagerAdapter
 import com.tuvy.tomosugi.minimalpairs.controller.MinimalPairsClient
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -17,21 +18,27 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-//        client.post(1, 2, "hello")
-//                .subscribeOn(Schedulers.io())
-//                .observeOn(AndroidSchedulers.mainThread())
-//                .doOnSubscribe {
-//                    Log.d("post", "doOnSubscribe")
-//                }
-//                .doOnError {
-//                    Log.d("post", "doOnError")
-//                }
-//                .doOnNext {
-//                    Log.d("post", "doOnNext")
-//                }
-//                .subscribe {
-//                    Log.d("post", "subscribe")
-//                }
+        Stetho.initialize(
+                Stetho.newInitializerBuilder(this)
+                        .enableDumpapp(Stetho.defaultDumperPluginsProvider(this))
+                        .enableWebKitInspector(Stetho.defaultInspectorModulesProvider(this))
+                        .build())
+
+        client.post(1, 2, "hello")
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe {
+                    Log.d("post", "doOnSubscribe")
+                }
+                .doOnError {
+                    Log.d("post", "doOnError")
+                }
+                .doOnNext {
+                    Log.d("post", "doOnNext")
+                }
+                .subscribe {
+                    Log.d("post", "subscribe")
+                }
 
 //        client.getProfile()
 //                .subscribeOn(Schedulers.io())
