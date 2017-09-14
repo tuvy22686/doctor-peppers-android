@@ -1,7 +1,13 @@
 package com.tuvy.tomosugi.minimalpairs
 
+import android.graphics.Bitmap
+import android.graphics.Matrix
+import android.graphics.drawable.BitmapDrawable
+import android.graphics.drawable.Drawable
+import android.graphics.drawable.ScaleDrawable
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v4.content.res.ResourcesCompat
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.Menu
@@ -25,6 +31,7 @@ class ChatActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowHomeEnabled(true)
         supportActionBar?.title = "partnerName"
+        supportActionBar?.setHomeAsUpIndicator(resizeDrawable(resources.getDrawable(R.drawable.arrow)))
 
         toolbar.setNavigationOnClickListener {
             onBackPressed()
@@ -54,4 +61,12 @@ class ChatActivity : AppCompatActivity() {
         }
         return super.onOptionsItemSelected(item);
     }
+
+    fun resizeDrawable(drawable: Drawable): Drawable {
+        var b: Bitmap = (drawable as BitmapDrawable).bitmap
+        var bitmapResized = Bitmap.createScaledBitmap(b, 50, 50, false)
+        return BitmapDrawable(resources, bitmapResized)
+    }
+
+
 }
