@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <fontsize name="appBig">36</fontsize>
+    <fontsize name="appBitBig">28</fontsize>
+    <fontsize name="appBitSmall">24</fontsize>
+    <fontsize name="appSmall">20</fontsize>
+</resources>
