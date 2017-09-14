@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/appSubColor"
+    android:orientation="vertical"
+    tools:context="com.tuvy.tomosugi.minimalpairs.ChatActivity">
+
+    <ImageButton
+        android:id="@+id/first_cancel_button"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:layout_marginTop="20dp"
+        android:background="@color/appSubColor"
+        android:scaleType="centerInside"
+        android:src="@drawable/cancel" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/chat_partner_icon"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_centerInParent="true"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="35dp"
+        android:src="@drawable/girl_greenborder"
+        app:civ_border_color="@android:color/holo_green_dark"
+        app:civ_border_width="2dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="初回メッセージはとても重要視されます" />
+
+    <TextView
+        android:id="@+id/konnakoto_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="こんなことを送ってみましょう" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="10sp"
+        android:text="Pairs で好印象な初回メッセージ内容とは？" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="260dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/iine_item"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@drawable/iine_item" />
+
+            <ImageView
+                android:id="@+id/wadai_item"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:maxWidth="10dp"
+                android:src="@drawable/wadai_item" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/orei_item"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:maxWidth="10dp"
+                android:src="@drawable/orei_item" />
+
+            <ImageView
+                android:id="@+id/shitumon_item"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:maxWidth="10dp"
+                android:src="@drawable/shitumon_item" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>
