@@ -17,6 +17,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+//        メッセージ送信用API(テスト)
 //        client.post(1, 2, "hello")
 //                .subscribeOn(Schedulers.io())
 //                .observeOn(AndroidSchedulers.mainThread())
@@ -33,6 +34,7 @@ class MainActivity : AppCompatActivity() {
 //                    Log.d("post", "subscribe")
 //                }
 
+//        プロフィール取得用API(テスト)
 //        client.getProfile()
 //                .subscribeOn(Schedulers.io())
 //                .observeOn(AndroidSchedulers.mainThread())
