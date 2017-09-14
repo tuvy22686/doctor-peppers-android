@@ -1,28 +1,21 @@
 package com.tuvy.tomosugi.minimalpairs.controller
 
-import android.content.Context
 import android.content.Intent
-import android.graphics.Canvas
-import android.graphics.Rect
-import android.graphics.drawable.Drawable
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import com.bumptech.glide.Glide
 import com.tuvy.tomosugi.minimalpairs.ChatActivity
 import com.tuvy.tomosugi.minimalpairs.R
 import com.tuvy.tomosugi.minimalpairs.model.User
 import com.tuvy.tomosugi.minimalpairs.view.PartnerViewHolder
-import android.util.DisplayMetrics
 
 
 
 class MatchingRecyclerViewAdapter(private val data: List<User>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        val inflate: View
-        inflate = LayoutInflater.from(parent.context).inflate(R.layout.partner, parent, false)
+        val inflate = LayoutInflater.from(parent.context).inflate(R.layout.partner, parent, false)
         return PartnerViewHolder(inflate)
     }
 
