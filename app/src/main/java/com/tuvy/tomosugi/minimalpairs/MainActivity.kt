@@ -1,15 +1,14 @@
 package com.tuvy.tomosugi.minimalpairs
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.view.ViewPager
+import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import com.facebook.stetho.Stetho
 import com.tuvy.tomosugi.minimalpairs.controller.MainFragmentStatePagerAdapter
 import com.tuvy.tomosugi.minimalpairs.controller.MinimalPairsClient
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
-
 
 class MainActivity : AppCompatActivity() {
 
@@ -18,12 +17,9 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        Stetho.initialize(
-                Stetho.newInitializerBuilder(this)
-                        .enableDumpapp(Stetho.defaultDumperPluginsProvider(this))
-                        .enableWebKitInspector(Stetho.defaultInspectorModulesProvider(this))
-                        .build())
+        Stetho.initializeWithDefaults(this)
 
+        // メッセージ送信用API(テスト)
         client.post(1, 2, "hello")
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -40,6 +36,7 @@ class MainActivity : AppCompatActivity() {
                     Log.d("post", "subscribe")
                 }
 
+//        プロフィール取得用API(テスト)
 //        client.getProfile()
 //                .subscribeOn(Schedulers.io())
 //                .observeOn(AndroidSchedulers.mainThread())
