@@ -1,24 +1,19 @@
 package com.tuvy.tomosugi.minimalpairs
 
-import android.content.Intent
 import android.graphics.Bitmap
-import android.graphics.Matrix
 import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.Drawable
-import android.graphics.drawable.ScaleDrawable
-import android.media.Image
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.support.v4.content.res.ResourcesCompat
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.util.Log
+import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.*
 import com.tuvy.tomosugi.minimalpairs.controller.ChatRecyclerViewAdapter
 import com.tuvy.tomosugi.minimalpairs.model.Message
-import rm.com.longpresspopup.LongPressPopup
 import rm.com.longpresspopup.LongPressPopupBuilder
 
 class ChatActivity : AppCompatActivity() {
@@ -36,23 +31,36 @@ class ChatActivity : AppCompatActivity() {
         kimochiButton.setOnClickListener {
             setContentView(R.layout.activity_chat_first)
 
-//            var popup = LongPressPopupBuilder(this)
-//                    .setTarget(btn)
-//                    //.setPopupView(textView)// Not using this time
-//                    .setPopupView(R.layout.popup_layout, this)
-//                    .setLongPressDuration(750)
-//                    .setDismissOnLongPressStop(false)
-//                    .setDismissOnTouchOutside(false)
-//                    .setDismissOnBackPressed(false)
-//                    .setCancelTouchOnDragOutsideView(true)
-//                    .setLongPressReleaseListener(this)
-//                    .setOnHoverListener(this)
-//                    .setPopupListener(this)
-//                    .setTag("PopupFoo")
-//                    .setAnimationType(LongPressPopup.ANIMATION_TYPE_FROM_CENTER)
-//                    .build();
-//
-//            onViewIn
+            var iine_item: ImageView = findViewById(R.id.iine_item) as ImageView
+            var wadai_item: ImageView = findViewById(R.id.wadai_item) as ImageView
+            var orei_item: ImageView = findViewById(R.id.orei_item) as ImageView
+            var shitumon_item: ImageView = findViewById(R.id.shitumon_item) as ImageView
+
+            var popup_iine_item = LongPressPopupBuilder(this)
+                    .setTarget(iine_item)
+                    .setPopupView(LayoutInflater.from(this).inflate(R.layout.popup_iine_item, null, true))
+                    .build()
+            popup_iine_item.register()
+
+            var popup_wadai_item = LongPressPopupBuilder(this)
+                    .setTarget(wadai_item)
+                    .setPopupView(LayoutInflater.from(this).inflate(R.layout.popup_wadai_item, null, true))
+                    .build()
+            popup_wadai_item.register()
+
+            var popup_orei_item = LongPressPopupBuilder(this)
+                    .setTarget(orei_item)
+                    .setPopupView(LayoutInflater.from(this).inflate(R.layout.popup_orei_item, null, true))
+                    .build()
+            popup_orei_item.register()
+
+            var popup_shitumon_item = LongPressPopupBuilder(this)
+                    .setTarget(shitumon_item)
+                    .setPopupView(LayoutInflater.from(this).inflate(R.layout.popup_shitumon_item, null, true))
+                    .build()
+            popup_shitumon_item.register()
+
+
         }
 
         //「キャンセル」ボタンを押して遷移
