@@ -34,6 +34,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:focusable="true"
+            android:textCursorDrawable="@android:color/holo_green_dark"
             android:focusableInTouchMode="true" />
 
         <Button

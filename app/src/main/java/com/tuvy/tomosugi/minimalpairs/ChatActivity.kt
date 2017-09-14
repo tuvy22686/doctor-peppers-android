@@ -6,6 +6,7 @@ import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.widget.LinearLayout
 import android.widget.TextView
+import android.widget.Toolbar
 import com.tuvy.tomosugi.minimalpairs.controller.ChatRecyclerViewAdapter
 import com.tuvy.tomosugi.minimalpairs.model.Message
 
@@ -14,6 +15,12 @@ class ChatActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_chat)
+
+//        val toolbar: android.support.v7.widget.Toolbar = findViewById(R.id.action_bar) as android.support.v7.widget.Toolbar
+//        setSupportActionBar(toolbar)
+//
+//        supportActionBar?.setDefaultDisplayHomeAsUpEnabled(true)
+//        supportActionBar?.setHomeButtonEnabled(true)
 
         val rv = findViewById(R.id.massageRecyclewView) as RecyclerView
         val llm = LinearLayoutManager(this)
