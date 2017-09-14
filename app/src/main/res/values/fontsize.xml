@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer name="appBig">36</integer>
+    <integer name="appBitBig">28</integer>
+    <integer name="appBitSmall">24</integer>
+    <integer name="appSmall">20</integer>
+</resources>
