@@ -3,6 +3,8 @@ package com.tuvy.tomosugi.minimalpairs.controller
 import android.util.Log
 import com.tuvy.tomosugi.minimalpairs.model.HistoryMessage
 import com.tuvy.tomosugi.minimalpairs.model.Message
+import com.tuvy.tomosugi.minimalpairs.model.Status
+import com.tuvy.tomosugi.minimalpairs.model.User
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
@@ -24,14 +26,23 @@ class MinimalPairsClient {
                 .build()
 
         val api = retrofit.create(MinimalPairsApi::class.java)
-        return api.history(
-                userId = userId,
-                partnerId = partnerId
-        )
+        return api.history(userId = userId, partnerId = partnerId)
     }
 
-    fun post(userId: Int, partnerId: Int, text: String): io.reactivex.Observable<Message> {
+    fun post(userId: Int, partnerId: Int, text: String): io.reactivex.Observable<Status> {
         Log.d("Client.post", "check")
+        val retrofit = Retrofit.Builder()
+                .baseUrl(endpoint)
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create())
+                .build()
+        Log.d("Client.post", "retrofit build ok")
+
+        val api = retrofit.create(MinimalPairsApi::class.java)
+        return api.post(userId = userId, partnerId = partnerId, text = text)
+    }
+
+    fun getProfile(): io.reactivex.Observable<User> {
         val retrofit = Retrofit.Builder()
                 .baseUrl(endpoint)
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
@@ -39,11 +50,7 @@ class MinimalPairsClient {
                 .build()
 
         val api = retrofit.create(MinimalPairsApi::class.java)
-        return api.post(
-                userId = userId,
-                partnerId = partnerId,
-                text = text
-        )
+        return api.getProfile()
     }
 
     interface MinimalPairsApi {
@@ -60,6 +67,9 @@ class MinimalPairsClient {
                 @Field("user_id") userId: Int,
                 @Field("partner_id") partnerId: Int,
                 @Field("content") text: String
-        ): io.reactivex.Observable<Message>
+        ): io.reactivex.Observable<Status>
+
+        @GET("user/1")
+        fun getProfile(): io.reactivex.Observable<User>
     }
 }

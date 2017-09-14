@@ -17,20 +17,37 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-//        client.post(1, 2, "from Android")
+//        client.post(1, 2, "hello")
 //                .subscribeOn(Schedulers.io())
 //                .observeOn(AndroidSchedulers.mainThread())
 //                .doOnSubscribe {
-//                    Log.d("Main.post", "doOnSubscribe")
+//                    Log.d("post", "doOnSubscribe")
 //                }
 //                .doOnError {
-//                    Log.d("Main.post", "doOnError")
+//                    Log.d("post", "doOnError")
 //                }
 //                .doOnNext {
-//                    Log.d("Main.post", "doOnNext")
+//                    Log.d("post", "doOnNext")
 //                }
 //                .subscribe {
-//                    Log.d("Main.post", "subscribe")
+//                    Log.d("post", "subscribe")
+//                }
+
+//        client.getProfile()
+//                .subscribeOn(Schedulers.io())
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .doOnSubscribe {
+//                    Log.d("getProfile", "doOnSubscribe")
+//                }
+//                .doOnError {
+//                    Log.d("getProfile", "doOnError")
+//                }
+//                .doOnNext {
+//                    Log.d("getProfile", "doOnNext")
+//                }
+//                .subscribe {
+//                    Log.d("getProfile", "subscribe")
+//                    Log.d("getProfile", it.name)
 //                }
 
         setContentView(R.layout.activity_main)
