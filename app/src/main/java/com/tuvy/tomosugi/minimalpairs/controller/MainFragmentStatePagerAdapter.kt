@@ -22,7 +22,7 @@ class MainFragmentStatePagerAdapter(fm: FragmentManager) : FragmentStatePagerAda
     override fun getPageTitle(position: Int): CharSequence {
         when (position) {
             0 -> return "さがす"
-            else -> return "メッセージ"
+            else -> return "マッチング"
         }
     }
 }
