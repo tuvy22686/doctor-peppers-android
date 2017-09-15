@@ -19,24 +19,42 @@ class MainActivity : AppCompatActivity() {
 
         Stetho.initializeWithDefaults(this)
 
-        // メッセージ送信用API(テスト)
-        client.post(1, 2, "hello")
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .doOnSubscribe {
-                    Log.d("post", "doOnSubscribe")
-                }
-                .doOnError {
-                    Log.d("post", "doOnError")
-                }
-                .doOnNext {
-                    Log.d("post", "doOnNext")
-                }
-                .subscribe {
-                    Log.d("post", "subscribe")
-                }
+//        // メッセージ送信用API(テスト)
+//        client.post(1, 2, "hello")
+//                .subscribeOn(Schedulers.io())
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .doOnSubscribe {
+//                    Log.d("post", "doOnSubscribe")
+//                }
+//                .doOnError {
+//                    Log.d("post", "doOnError")
+//                }
+//                .doOnNext {
+//                    Log.d("post", "doOnNext")
+//                }
+//                .subscribe {
+//                    Log.d("post", "subscribe")
+//                }
 
-//        プロフィール取得用API(テスト)
+//        // New: メッセージ送信用API(テスト)
+//        client.postAlt(1, 2, "hello")
+//                .subscribeOn(Schedulers.io())
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .doOnSubscribe {
+//                    Log.d("post", "doOnSubscribe")
+//                }
+//                .doOnError {
+//                    Log.d("post", "doOnError")
+//                }
+//                .doOnNext {
+//                    Log.d("post", "doOnNext")
+//                }
+//                .subscribe {
+//                    Log.d("post", "subscribe")
+//                    Log.d("post", it.status)
+//                }
+
+//        //プロフィール取得用API(テスト)
 //        client.getProfile()
 //                .subscribeOn(Schedulers.io())
 //                .observeOn(AndroidSchedulers.mainThread())
@@ -53,6 +71,24 @@ class MainActivity : AppCompatActivity() {
 //                    Log.d("getProfile", "subscribe")
 //                    Log.d("getProfile", it.name)
 //                }
+
+        //会話履歴aa取得用API(テスト)
+//        client.history(userId = 1, partnerId = 2)
+//                .subscribeOn(Schedulers.io())
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .doOnSubscribe {
+//                    Log.d("history", "doOnSubscribe")
+//                }
+//                .doOnError {
+//                    Log.d("history", "doOnError")
+//                }
+//                .doOnNext {
+//                    Log.d("history", "doOnNext")
+//                }
+//                .subscribe {
+//                    Log.d("history", "subscribe")
+//                }
+
 
         setContentView(R.layout.activity_main)
         val viewPager = findViewById(R.id.pager) as ViewPager

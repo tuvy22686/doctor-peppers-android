@@ -26,6 +26,7 @@ class MinimalPairsClient {
             .build()
 
     fun history(userId: Int, partnerId: Int): io.reactivex.Observable<HistoryMessage> {
+        Log.d("Clinet.history", "check")
         val retrofit = Retrofit.Builder()
                 .client(okHttpClient)
                 .baseUrl(endpoint)
@@ -55,7 +56,7 @@ class MinimalPairsClient {
         return api.post(userId = userIdPart, partnerId = partnerIdPart, text = textPart)
     }
 
-    fun getProfile(): io.reactivex.Observable<User> {
+    fun getProfile2(): io.reactivex.Observable<User> {
         val retrofit = Retrofit.Builder()
                 .client(okHttpClient)
                 .baseUrl(endpoint)
@@ -64,11 +65,46 @@ class MinimalPairsClient {
                 .build()
 
         val api = retrofit.create(MinimalPairsApi::class.java)
-        return api.getProfile()
+        return api.getProfile2()
+    }
+
+    fun getProfile3(): io.reactivex.Observable<User> {
+        val retrofit = Retrofit.Builder()
+                .client(okHttpClient)
+                .baseUrl(endpoint)
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create())
+                .build()
+
+        val api = retrofit.create(MinimalPairsApi::class.java)
+        return api.getProfile3()
+    }
+
+    fun getProfile4(): io.reactivex.Observable<User> {
+        val retrofit = Retrofit.Builder()
+                .client(okHttpClient)
+                .baseUrl(endpoint)
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create())
+                .build()
+
+        val api = retrofit.create(MinimalPairsApi::class.java)
+        return api.getProfile4()
+    }
+
+    fun postAlt(userId: Int, partnerId: Int, text: String): io.reactivex.Observable<Status> {
+        val retrofit = Retrofit.Builder()
+                .client(okHttpClient)
+                .baseUrl(endpoint)
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create())
+                .build()
+
+        val api = retrofit.create(MinimalPairsApi::class.java)
+        return api.postAlt(userId = userId, partnerId = partnerId, text = text)
     }
 
     interface MinimalPairsApi {
-        @FormUrlEncoded
         @GET("message/history")
         fun history(
                 @Query("user_id") userId: Int,
@@ -83,7 +119,20 @@ class MinimalPairsClient {
                 @Part("content") text: RequestBody
         ): io.reactivex.Observable<Status>
 
-        @GET("user/1")
-        fun getProfile(): io.reactivex.Observable<User>
+        @GET("user/2")
+        fun getProfile2(): io.reactivex.Observable<User>
+
+        @GET("user/3")
+        fun getProfile3(): io.reactivex.Observable<User>
+
+        @GET("user/4")
+        fun getProfile4(): io.reactivex.Observable<User>
+
+        @GET("message/create_alt")
+        fun postAlt(
+                @Query("user_id") userId: Int,
+                @Query("partner_id") partnerId: Int,
+                @Query("content") text: String
+        ): io.reactivex.Observable<Status>
     }
 }
