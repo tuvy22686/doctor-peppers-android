@@ -1,5 +1,6 @@
 package com.tuvy.tomosugi.minimalpairs
 
+import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.Drawable
@@ -11,9 +12,14 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.*
 import com.tuvy.tomosugi.minimalpairs.controller.ChatRecyclerViewAdapter
+import com.tuvy.tomosugi.minimalpairs.controller.MinimalPairsClient
 import com.tuvy.tomosugi.minimalpairs.model.Message
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 import rm.com.longpresspopup.LongPressPopupBuilder
 
 class ChatActivity : AppCompatActivity() {
@@ -60,12 +66,45 @@ class ChatActivity : AppCompatActivity() {
                     .build()
             popup_shitumon_item.register()
 
-
         }
 
         //「キャンセル」ボタンを押して遷移
         cancelButton.setOnClickListener {
             setContentView(R.layout.activity_chat)
+
+            var client = MinimalPairsClient()
+            var rv: RecyclerView = findViewById(R.id.massageRecyclewView) as RecyclerView
+            var llm = LinearLayoutManager(this)
+
+            client.history(userId = 1, partnerId = 2)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe {
+                        rv.setHasFixedSize(true)
+                        rv.layoutManager = llm
+                        rv.adapter = ChatRecyclerViewAdapter(it.messages)
+                    }
+
+//            var editText: EditText = findViewById(R.id.message_edit_text) as EditText
+//            editText.setOnFocusChangeListener
+
+//            editText.setOnFocusChangeListener { v, hasFocus ->
+//                if (hasFocus) {
+//                    //ビューの変更
+//                    var linearLayout: LinearLayout = findViewById(R.id.before_bottombar) as LinearLayout
+//                    linearLayout.removeAllViews()
+//                    layoutInflater.inflate(R.layout.after_buttombar, linearLayout)
+//                    //変わったあとの後のビューのedittextにフォーカスを当てる
+//                    var afterEditText: EditText = findViewById(R.id.after_message_edittext) as EditText
+//                    afterEditText.isFocusable = true
+//                    afterEditText.isFocusableInTouchMode = true
+//                    afterEditText.requestFocus()
+//
+//                } else {
+//
+//                }
+//            }
+
 
             val toolbar: android.support.v7.widget.Toolbar = findViewById(R.id.toolbar) as android.support.v7.widget.Toolbar
             setSupportActionBar(toolbar)
@@ -73,32 +112,43 @@ class ChatActivity : AppCompatActivity() {
             var intent = intent
             var partnerId: Int = intent.getIntExtra("partnerId", -1)
             var partnerName = when (partnerId) {
-                0 -> "零マン"
-                1 -> "おとこ"
-                2 -> "おんな"
+                0 -> "Yuka"
+                1 -> "aki"
+                2 -> "Sayuri"
                 else -> "null子"
             }
+
+            //Toolbarのカスタマイズ
             supportActionBar?.setDisplayHomeAsUpEnabled(true)
             supportActionBar?.setDisplayShowHomeEnabled(true)
             supportActionBar?.setHomeAsUpIndicator(resizeDrawable(resources.getDrawable(R.drawable.arrow)))
             supportActionBar?.title = partnerName
+
+//            var inflator: LayoutInflater = supportActionBar.themedContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+//            var customActionBarView = inflator.inflate(R.layout.toolbar_icon)
+//
+//            supportActionBar?.customView(LayoutInflater.from(this).inflate(R.layout.toolbar_icon))
+
+//            R.layout.toolbar_icon
+
             toolbar.setNavigationOnClickListener {
                 onBackPressed()
             }
 
-            if (intent != null) {
-                Log.d("onCreate", intent.getIntExtra("partnerId", -1).toString())
-            }
+//            if (intent != null) {
+//                Log.d("onCreate", intent.getIntExtra("partnerId", -1).toString())
+//            }
 
-            val rv = findViewById(R.id.massageRecyclewView) as RecyclerView
-            val llm = LinearLayoutManager(this)
+//            val rv = findViewById(R.id.massageRecyclewView) as RecyclerView
+//            val llm = LinearLayoutManager(this)
 
 //        val data: List<Message> = List(3, { index -> Message(index.toString())})
-            val data: List<Message> = List(3, { timestamp -> Message(partnerId = 1, userId = 2, fromMe = 1, timestamp = timestamp, text = "hello") })
+            //TODO ダミーなので、historyを呼び出して入れる
+//            val data: List<Message> = List(3, { timestamp -> Message(partnerId = 1, userId = 2, fromMe = 1, timestamp = timestamp, text = "hello") })
 
-            rv.setHasFixedSize(true)
-            rv.layoutManager = llm
-            rv.adapter = ChatRecyclerViewAdapter(data)
+//            rv.setHasFixedSize(true)
+//            rv.layoutManager = llm
+//            rv.adapter = ChatRecyclerViewAdapter(data)
 
 
         }
@@ -117,7 +167,6 @@ class ChatActivity : AppCompatActivity() {
         }
         return super.onOptionsItemSelected(item);
     }
-
 
     fun resizeDrawable(drawable: Drawable): Drawable {
         var b: Bitmap = (drawable as BitmapDrawable).bitmap
