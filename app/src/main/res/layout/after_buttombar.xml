@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/before_bottombar"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_alignParentBottom="true"
+    android:background="@android:color/white"
+    android:orientation="vertical">
+
+
+    <EditText
+        android:id="@+id/after_message_edittext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="メッセージを入力" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageButton
+            android:layout_width="51dp"
+            android:layout_height="45.25dp"
+            android:background="@android:color/white"
+            android:padding="10dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/camera" />
+
+        <ImageButton
+            android:layout_width="46.5dp"
+            android:layout_height="46.5dp"
+            android:background="@android:color/white"
+            android:padding="10dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/stamp" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#d4d4d4"
+            android:text="送信" />
+
+    </LinearLayout>
+
+
+</LinearLayout>

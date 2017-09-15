@@ -5,7 +5,9 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import com.bumptech.glide.Glide
+import com.tuvy.tomosugi.minimalpairs.ChatActivity
 import com.tuvy.tomosugi.minimalpairs.R
 import com.tuvy.tomosugi.minimalpairs.model.Message
 import com.tuvy.tomosugi.minimalpairs.view.MessageViewHolder
@@ -28,11 +30,46 @@ class ChatRecyclerViewAdapter(private val data: List<Message>) : RecyclerView.Ad
         holder as MessageViewHolder
         holder.messageView.text = data[position].text
 
-        Glide
-                .with(holder.partnerIcon.context)
-                .load("")
-                .placeholder(R.mipmap.ic_launcher)
-                .into(holder.partnerIcon)
+//        holder.userIconView.setImageBitmap(list[position].bitmap)
+
+//
+//        if (data[position].partnerId == 0) {
+//            holder.partnerIcon = LayoutInflater.from(holder.partnerIcon.context).inflate(R.drawable.girl_1, null, true) as ImageView
+//        } else if(data[position].partnerId == 1) {
+//            holder.partnerIcon = LayoutInflater.from(holder.partnerIcon.context).inflate(R.drawable.girl_2, null, true) as ImageView
+//        } else if(data[position].partnerId == 2) {
+//            holder.partnerIcon = LayoutInflater.from(holder.partnerIcon.context).inflate(R.drawable.girl_3, null, true) as ImageView
+//        }
+//
+//        Glide
+//                .with(holder.partnerIcon.context)
+//                .load("")
+//                .placeholder(R.mipmap.ic_launcher)
+//                .into(holder.partnerIcon)
+
+        //TODO チャットでのiconにpartnerの画像を載せるようにする
+        if (data[position].partnerId == 0) {
+            Glide
+                    .with(holder.partnerIcon.context)
+                    .load("")
+                    .placeholder(R.drawable.girl_1)
+                    .into(holder.partnerIcon)
+        }
+        else if (data[position].partnerId == 1) {
+            Glide
+                    .with(holder.partnerIcon.context)
+                    .load("")
+                    .placeholder(R.drawable.girl_2)
+                    .into(holder.partnerIcon)
+        }
+        else {
+            Glide
+                    .with(holder.partnerIcon.context)
+                    .load("")
+                    .placeholder(R.drawable.girl_3)
+                    .into(holder.partnerIcon)
+        }
+
     }
 
     override fun getItemCount(): Int {
