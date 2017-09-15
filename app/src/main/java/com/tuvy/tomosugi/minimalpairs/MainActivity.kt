@@ -59,16 +59,16 @@ class MainActivity : AppCompatActivity() {
 //                .subscribeOn(Schedulers.io())
 //                .observeOn(AndroidSchedulers.mainThread())
 //                .doOnSubscribe {
-//                    Log.d("getProfile", "doOnSubscribe")
+//                    Log.d("history", "doOnSubscribe")
 //                }
 //                .doOnError {
-//                    Log.d("getProfile", "doOnError")
+//                    Log.d("history", "doOnError")
 //                }
 //                .doOnNext {
-//                    Log.d("getProfile", "doOnNext")
+//                    Log.d("history", "doOnNext")
 //                }
 //                .subscribe {
-//                    Log.d("getProfile", "subscribe")
+//                    Log.d("history", "subscribe")
 //                }
 
 
