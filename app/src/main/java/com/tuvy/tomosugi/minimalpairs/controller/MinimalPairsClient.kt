@@ -26,6 +26,7 @@ class MinimalPairsClient {
             .build()
 
     fun history(userId: Int, partnerId: Int): io.reactivex.Observable<HistoryMessage> {
+        Log.d("Clinet.history", "check")
         val retrofit = Retrofit.Builder()
                 .client(okHttpClient)
                 .baseUrl(endpoint)
@@ -68,7 +69,6 @@ class MinimalPairsClient {
     }
 
     interface MinimalPairsApi {
-        @FormUrlEncoded
         @GET("message/history")
         fun history(
                 @Query("user_id") userId: Int,
