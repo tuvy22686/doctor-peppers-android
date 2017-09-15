@@ -261,7 +261,7 @@ class ChatActivity : AppCompatActivity() {
                     history()
                 })
             }
-        }, 1000, 1000) // 実行したい間隔(ミリ秒)
+        }, 1000, 5000) // 実行したい間隔(ミリ秒)
     }
 
     override fun onPause() {

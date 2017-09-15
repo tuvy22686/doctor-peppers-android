@@ -11,24 +11,43 @@ import com.tuvy.tomosugi.minimalpairs.ChatActivity
 import com.tuvy.tomosugi.minimalpairs.R
 import com.tuvy.tomosugi.minimalpairs.model.Message
 import com.tuvy.tomosugi.minimalpairs.view.MessageViewHolder
+import com.tuvy.tomosugi.minimalpairs.view.MosaicViewHolder
 
 class ChatRecyclerViewAdapter(private val data: List<Message>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
 
         val inflate: View
-        inflate = LayoutInflater.from(parent.context).inflate(R.layout.message, parent, false)
-        return MessageViewHolder(inflate)
+
+        if(viewType == 1) { //女
+            inflate = LayoutInflater.from(parent.context).inflate(R.layout.mosaic_layout, parent, false)
+            return MosaicViewHolder(inflate)
+        } else {    //男
+            inflate = LayoutInflater.from(parent.context).inflate(R.layout.message, parent, false)
+            return MessageViewHolder(inflate)
+        }
     }
 
     override fun getItemViewType(position: Int): Int {
         super.getItemViewType(position)
-        return position
+
+        var index = 0
+
+        if(data[position].partnerId == 2 && position >= 2) {
+            index = 1; //2通目以降女の子
+        }
+
+        return index
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        holder as MessageViewHolder
-        holder.messageView.text = data[position].text
+        //2通目のとき
+        if(holder.getItemViewType() == 1) {
+            holder as MosaicViewHolder
+        } else {
+            holder as MessageViewHolder
+            holder.messageView.text = data[position].text
+        }
 
 //        holder.userIconView.setImageBitmap(list[position].bitmap)
 
@@ -47,28 +66,28 @@ class ChatRecyclerViewAdapter(private val data: List<Message>) : RecyclerView.Ad
 //                .placeholder(R.mipmap.ic_launcher)
 //                .into(holder.partnerIcon)
 
-        //TODO チャットでのiconにpartnerの画像を載せるようにする
-        if (data[position].partnerId == 0) {
-            Glide
-                    .with(holder.partnerIcon.context)
-                    .load("")
-                    .placeholder(R.drawable.girl_1)
-                    .into(holder.partnerIcon)
-        }
-        else if (data[position].partnerId == 1) {
-            Glide
-                    .with(holder.partnerIcon.context)
-                    .load("")
-                    .placeholder(R.drawable.girl_2)
-                    .into(holder.partnerIcon)
-        }
-        else {
-            Glide
-                    .with(holder.partnerIcon.context)
-                    .load("")
-                    .placeholder(R.drawable.girl_3)
-                    .into(holder.partnerIcon)
-        }
+//        //TODO チャットでのiconにpartnerの画像を載せるようにする
+//        if (data[position].partnerId == 0) {
+//            Glide
+//                    .with(holder.partnerIcon.context)
+//                    .load("")
+//                    .placeholder(R.drawable.girl_1)
+//                    .into(holder.partnerIcon)
+//        }
+//        else if (data[position].partnerId == 1) {
+//            Glide
+//                    .with(holder.partnerIcon.context)
+//                    .load("")
+//                    .placeholder(R.drawable.girl_2)
+//                    .into(holder.partnerIcon)
+//        }
+//        else {
+//            Glide
+//                    .with(holder.partnerIcon.context)
+//                    .load("")
+//                    .placeholder(R.drawable.girl_3)
+//                    .into(holder.partnerIcon)
+//        }
 
     }
 
