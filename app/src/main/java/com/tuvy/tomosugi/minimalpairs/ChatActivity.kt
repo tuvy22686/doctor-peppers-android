@@ -76,17 +76,14 @@ class ChatActivity : AppCompatActivity() {
             var rv: RecyclerView = findViewById(R.id.massageRecyclewView) as RecyclerView
             var llm = LinearLayoutManager(this)
 
-            client.history(userId = 0, partnerId = 1)
+            client.history(userId = 1, partnerId = 2)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe() {
+                    .subscribe {
                         rv.setHasFixedSize(true)
                         rv.layoutManager = llm
                         rv.adapter = ChatRecyclerViewAdapter(it.messages)
                     }
-
-
-
 
 //            var editText: EditText = findViewById(R.id.message_edit_text) as EditText
 //            editText.setOnFocusChangeListener
@@ -138,9 +135,9 @@ class ChatActivity : AppCompatActivity() {
                 onBackPressed()
             }
 
-            if (intent != null) {
-                Log.d("onCreate", intent.getIntExtra("partnerId", -1).toString())
-            }
+//            if (intent != null) {
+//                Log.d("onCreate", intent.getIntExtra("partnerId", -1).toString())
+//            }
 
 //            val rv = findViewById(R.id.massageRecyclewView) as RecyclerView
 //            val llm = LinearLayoutManager(this)
