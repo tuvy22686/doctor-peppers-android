@@ -250,7 +250,7 @@ class ChatActivity : AppCompatActivity() {
                     Log.d("history", "Hello")
                     rv!!.setHasFixedSize(true)
                     rv!!.layoutManager = llm
-                    rv!!.adapter = ChatRecyclerViewAdapter(it.messages)
+                    rv!!.adapter = ChatRecyclerViewAdapter(it.messages.reversed())
                 }
     }
 

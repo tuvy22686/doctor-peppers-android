@@ -19,7 +19,8 @@ class ChatRecyclerViewAdapter(private val data: List<Message>) : RecyclerView.Ad
 
         val inflate: View
 
-        if(viewType == 1) { //女
+
+        if (viewType == 1) { //女
             inflate = LayoutInflater.from(parent.context).inflate(R.layout.mosaic_layout, parent, false)
             return MosaicViewHolder(inflate)
         } else {    //男
@@ -31,10 +32,15 @@ class ChatRecyclerViewAdapter(private val data: List<Message>) : RecyclerView.Ad
     override fun getItemViewType(position: Int): Int {
         super.getItemViewType(position)
 
-        var index = 0
+        var index = 0   //かけない
 
-        if(data[position].partnerId == 2 && position >= 2) {
-            index = 1; //2通目以降女の子
+//        if(data[position].partnerId == 2 && position >= 2) {
+//        if(position >= 1) {
+        if (itemCount == 0) {
+
+        } else if (position < itemCount - 1) {
+
+            index = 1; //2通目以降女の子 //かける
         }
 
         return index
@@ -42,7 +48,7 @@ class ChatRecyclerViewAdapter(private val data: List<Message>) : RecyclerView.Ad
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         //2通目のとき
-        if(holder.getItemViewType() == 1) {
+        if (holder.getItemViewType() == 1) {
             holder as MosaicViewHolder
         } else {
             holder as MessageViewHolder
