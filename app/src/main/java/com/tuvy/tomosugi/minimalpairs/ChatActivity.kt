@@ -35,7 +35,7 @@ class ChatActivity : AppCompatActivity() {
 
         //「気持ちを伝える」ボタンを押して遷移
         kimochiButton.setOnClickListener {
-            setContentView(R.layout.activity_chat_first)
+            setContentView(R.layout.activity_chat_first2)
 
             var iine_item: ImageView = findViewById(R.id.iine_item) as ImageView
             var wadai_item: ImageView = findViewById(R.id.wadai_item) as ImageView
