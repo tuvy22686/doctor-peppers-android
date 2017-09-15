@@ -54,22 +54,22 @@ class MainActivity : AppCompatActivity() {
 //                    Log.d("getProfile", it.name)
 //                }
 
-        //会話履歴取得用API(テスト)
-        client.history(userId = 1, partnerId = 2)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .doOnSubscribe {
-                    Log.d("history", "doOnSubscribe")
-                }
-                .doOnError {
-                    Log.d("history", "doOnError")
-                }
-                .doOnNext {
-                    Log.d("history", "doOnNext")
-                }
-                .subscribe {
-                    Log.d("history", "subscribe")
-                }
+//        //会話履歴取得用API(テスト)
+//        client.history(userId = 1, partnerId = 2)
+//                .subscribeOn(Schedulers.io())
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .doOnSubscribe {
+//                    Log.d("history", "doOnSubscribe")
+//                }
+//                .doOnError {
+//                    Log.d("history", "doOnError")
+//                }
+//                .doOnNext {
+//                    Log.d("history", "doOnNext")
+//                }
+//                .subscribe {
+//                    Log.d("history", "subscribe")
+//                }
 
 
         setContentView(R.layout.activity_main)
