@@ -1,30 +1,39 @@
 package com.tuvy.tomosugi.minimalpairs
 
-import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.Drawable
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
-import android.view.inputmethod.InputMethodManager
 import android.widget.*
 import com.tuvy.tomosugi.minimalpairs.controller.ChatRecyclerViewAdapter
 import com.tuvy.tomosugi.minimalpairs.controller.MinimalPairsClient
-import com.tuvy.tomosugi.minimalpairs.model.Message
+import de.hdodenhof.circleimageview.CircleImageView
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import rm.com.longpresspopup.LongPressPopupBuilder
+import java.sql.Time
+import java.util.*
 
 class ChatActivity : AppCompatActivity() {
 
     var client = MinimalPairsClient()
+    var rv: RecyclerView? = null
+    var llm: LinearLayoutManager? = null
+
+    var mHandler = Handler()
+    var mTimer = Timer()
+
+//    var circleImageView: CircleImageView? = null
+//    circleImageView!!.setImageResource(R.drawable.girl2_green)
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,7 +46,7 @@ class ChatActivity : AppCompatActivity() {
 
         //「気持ちを伝える」ボタンを押して遷移
         kimochiButton!!.setOnClickListener {
-            setContentView(R.layout.activity_chat_first2)
+            setContentView(R.layout.activity_chat_first)
 
             var iine_item: ImageView = findViewById(R.id.iine_item) as ImageView
             var wadai_item: ImageView = findViewById(R.id.wadai_item) as ImageView
@@ -69,7 +78,7 @@ class ChatActivity : AppCompatActivity() {
                     .build()
             popup_shitumon_item.register()
 
-            var cancelButton2: ImageButton =findViewById(R.id.first_cancel_button) as ImageButton
+            var cancelButton2: ImageButton = findViewById(R.id.first_cancel_button) as ImageButton
             cancelButton2.setOnClickListener {
                 onClickCancelButton()
             }
@@ -101,21 +110,13 @@ class ChatActivity : AppCompatActivity() {
     }
 
     fun onClickCancelButton() {
-
         setContentView(R.layout.activity_chat)
 
-        var rv: RecyclerView = findViewById(R.id.massageRecyclewView) as RecyclerView
-        var llm = LinearLayoutManager(this)
+        autoReload()
 
-        client.history(userId = 1, partnerId = 2)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe {
-                    Log.d("history", "Hello")
-                    rv.setHasFixedSize(true)
-                    rv.layoutManager = llm
-                    rv.adapter = ChatRecyclerViewAdapter(it.messages)
-                }
+        rv = findViewById(R.id.massageRecyclewView) as RecyclerView
+        llm = LinearLayoutManager(this)
+
 
         val messageEditText: EditText = findViewById(R.id.message_edit_text) as EditText
         val sendButton: Button = findViewById(R.id.send_button) as Button
@@ -123,14 +124,18 @@ class ChatActivity : AppCompatActivity() {
         sendButton.setOnClickListener {
 
             //messageEditText.text.toString()
-            client.post(userId = 1, partnerId =  2,text = "aaaaaaaaaa")
+            client.postAlt(userId = 1, partnerId = 2, text = messageEditText.text.toString())
                     .subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
                     .subscribe {
-                        Log.d("post",it.status)
+                        Log.d("post", it.status)
+                        history()
+//                        messageEditText.editableText.clear()
                     }
         }
-//                messageEditText.editableText.clear()
+
+
+
+
 
 
         //        // メッセージ送信用API(テスト)
@@ -237,5 +242,34 @@ class ChatActivity : AppCompatActivity() {
 
     }
 
+    fun history() {
+        client.history(userId = 1, partnerId = 2)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe {
+                    Log.d("history", "Hello")
+                    rv!!.setHasFixedSize(true)
+                    rv!!.layoutManager = llm
+                    rv!!.adapter = ChatRecyclerViewAdapter(it.messages)
+                }
+    }
+
+    fun autoReload() {
+        mTimer.schedule(object : TimerTask() {
+            override fun run() {
+                mHandler.post(Runnable {
+                    history()
+                })
+            }
+        }, 1000, 1000) // 実行したい間隔(ミリ秒)
+    }
+
+    override fun onPause() {
+        super.onPause()
+
+        if (mTimer != null) {
+            mTimer.cancel()
+        }
+    }
 
 }
