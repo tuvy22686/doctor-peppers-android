@@ -24,23 +24,26 @@ import rm.com.longpresspopup.LongPressPopupBuilder
 
 class ChatActivity : AppCompatActivity() {
 
+    var client = MinimalPairsClient()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         //Congratuations画面
         setContentView(R.layout.congratulations)
 
-        var kimochiButton: Button = findViewById(R.id.kimochi_button) as Button
-        var cancelButton: ImageButton = findViewById(R.id.cancel_button) as ImageButton
+        var kimochiButton: Button? = findViewById(R.id.kimochi_button) as Button
+        var cancelButton: ImageButton? = findViewById(R.id.cancel_button) as ImageButton
 
         //「気持ちを伝える」ボタンを押して遷移
-        kimochiButton.setOnClickListener {
+        kimochiButton!!.setOnClickListener {
             setContentView(R.layout.activity_chat_first2)
 
             var iine_item: ImageView = findViewById(R.id.iine_item) as ImageView
             var wadai_item: ImageView = findViewById(R.id.wadai_item) as ImageView
             var orei_item: ImageView = findViewById(R.id.orei_item) as ImageView
             var shitumon_item: ImageView = findViewById(R.id.shitumon_item) as ImageView
+
 
             var popup_iine_item = LongPressPopupBuilder(this)
                     .setTarget(iine_item)
@@ -69,10 +72,9 @@ class ChatActivity : AppCompatActivity() {
         }
 
         //「キャンセル」ボタンを押して遷移
-        cancelButton.setOnClickListener {
+        cancelButton!!.setOnClickListener {
             setContentView(R.layout.activity_chat)
 
-            var client = MinimalPairsClient()
             var rv: RecyclerView = findViewById(R.id.massageRecyclewView) as RecyclerView
             var llm = LinearLayoutManager(this)
 
@@ -80,10 +82,62 @@ class ChatActivity : AppCompatActivity() {
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe {
+                        Log.d("history", "Hello")
                         rv.setHasFixedSize(true)
                         rv.layoutManager = llm
                         rv.adapter = ChatRecyclerViewAdapter(it.messages)
                     }
+
+            val messageEditText: EditText? = findViewById(R.id.message_edit_text) as EditText
+            val sendButton: Button? = findViewById(R.id.send_button) as Button
+
+            sendButton!!.setOnClickListener {
+
+                client.post(1, 2, messageEditText!!.text.toString())
+                        .subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe {
+                            Log.d("post", "subscribe")
+                        }
+                messageEditText.editableText.clear()
+            }
+
+
+            //        // メッセージ送信用API(テスト)
+//        client.post(1, 2, "hello")
+//                .subscribeOn(Schedulers.io())
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .doOnSubscribe {
+//                    Log.d("post", "doOnSubscribe")
+//                }
+//                .doOnError {
+//                    Log.d("post", "doOnError")
+//                }
+//                .doOnNext {
+//                    Log.d("post", "doOnNext")
+//                }
+//                .subscribe {
+//                    Log.d("post", "subscribe")
+//                }
+
+
+//                    //会話履歴取得用API(テスト)
+//        client.history(userId = 1, partnerId = 2)
+//                .subscribeOn(Schedulers.io())
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .doOnSubscribe {
+//                    Log.d("getProfile", "doOnSubscribe")
+//                }
+//                .doOnError {
+//                    Log.d("getProfile", "doOnError")
+//                }
+//                .doOnNext {
+//                    Log.d("getProfile", "doOnNext")
+//                }
+//                .subscribe {
+//                    Log.d("getProfile", "subscribe")
+//
+//                }
 
 //            var editText: EditText = findViewById(R.id.message_edit_text) as EditText
 //            editText.setOnFocusChangeListener
