@@ -36,6 +36,24 @@ class MainActivity : AppCompatActivity() {
 //                    Log.d("post", "subscribe")
 //                }
 
+        // メッセージ送信用API(テスト)
+        client.postAlt(1, 2, "hello")
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe {
+                    Log.d("post", "doOnSubscribe")
+                }
+                .doOnError {
+                    Log.d("post", "doOnError")
+                }
+                .doOnNext {
+                    Log.d("post", "doOnNext")
+                }
+                .subscribe {
+                    Log.d("post", "subscribe")
+                    Log.d("post", it.status)
+                }
+
 //        //プロフィール取得用API(テスト)
 //        client.getProfile()
 //                .subscribeOn(Schedulers.io())
