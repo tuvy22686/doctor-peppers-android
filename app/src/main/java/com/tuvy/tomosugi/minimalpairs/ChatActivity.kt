@@ -69,41 +69,71 @@ class ChatActivity : AppCompatActivity() {
                     .build()
             popup_shitumon_item.register()
 
+            var cancelButton2: ImageButton =findViewById(R.id.first_cancel_button) as ImageButton
+            cancelButton2.setOnClickListener {
+                onClickCancelButton()
+            }
         }
 
         //「キャンセル」ボタンを押して遷移
         cancelButton!!.setOnClickListener {
-            setContentView(R.layout.activity_chat)
+            onClickCancelButton()
+        }
+    }
 
-            var rv: RecyclerView = findViewById(R.id.massageRecyclewView) as RecyclerView
-            var llm = LinearLayoutManager(this)
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_chat, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
 
-            client.history(userId = 1, partnerId = 2)
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        var id: Int = item!!.itemId
+        if (id == R.id.action_setting) {
+            return true
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    fun resizeDrawable(drawable: Drawable): Drawable {
+        var b: Bitmap = (drawable as BitmapDrawable).bitmap
+        var bitmapResized = Bitmap.createScaledBitmap(b, 50, 50, false)
+        return BitmapDrawable(resources, bitmapResized)
+    }
+
+    fun onClickCancelButton() {
+
+        setContentView(R.layout.activity_chat)
+
+        var rv: RecyclerView = findViewById(R.id.massageRecyclewView) as RecyclerView
+        var llm = LinearLayoutManager(this)
+
+        client.history(userId = 1, partnerId = 2)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe {
+                    Log.d("history", "Hello")
+                    rv.setHasFixedSize(true)
+                    rv.layoutManager = llm
+                    rv.adapter = ChatRecyclerViewAdapter(it.messages)
+                }
+
+        val messageEditText: EditText = findViewById(R.id.message_edit_text) as EditText
+        val sendButton: Button = findViewById(R.id.send_button) as Button
+
+        sendButton.setOnClickListener {
+
+            //messageEditText.text.toString()
+            client.post(userId = 1, partnerId =  2,text = "aaaaaaaaaa")
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe {
-                        Log.d("history", "Hello")
-                        rv.setHasFixedSize(true)
-                        rv.layoutManager = llm
-                        rv.adapter = ChatRecyclerViewAdapter(it.messages)
+                        Log.d("post",it.status)
                     }
-
-            val messageEditText: EditText? = findViewById(R.id.message_edit_text) as EditText
-            val sendButton: Button? = findViewById(R.id.send_button) as Button
-
-            sendButton!!.setOnClickListener {
-
-                client.post(1, 2, messageEditText!!.text.toString())
-                        .subscribeOn(Schedulers.io())
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe {
-                            Log.d("post", "subscribe")
-                        }
-                messageEditText.editableText.clear()
-            }
+        }
+//                messageEditText.editableText.clear()
 
 
-            //        // メッセージ送信用API(テスト)
+        //        // メッセージ送信用API(テスト)
 //        client.post(1, 2, "hello")
 //                .subscribeOn(Schedulers.io())
 //                .observeOn(AndroidSchedulers.mainThread())
@@ -160,23 +190,23 @@ class ChatActivity : AppCompatActivity() {
 //            }
 
 
-            val toolbar: android.support.v7.widget.Toolbar = findViewById(R.id.toolbar) as android.support.v7.widget.Toolbar
-            setSupportActionBar(toolbar)
+        val toolbar: android.support.v7.widget.Toolbar = findViewById(R.id.toolbar) as android.support.v7.widget.Toolbar
+        setSupportActionBar(toolbar)
 
-            var intent = intent
-            var partnerId: Int = intent.getIntExtra("partnerId", -1)
-            var partnerName = when (partnerId) {
-                0 -> "Yuka"
-                1 -> "aki"
-                2 -> "Sayuri"
-                else -> "null子"
-            }
+        var intent = intent
+        var partnerId: Int = intent.getIntExtra("partnerId", -1)
+        var partnerName = when (partnerId) {
+            0 -> "Yuka"
+            1 -> "aki"
+            2 -> "Sayuri"
+            else -> "null子"
+        }
 
-            //Toolbarのカスタマイズ
-            supportActionBar?.setDisplayHomeAsUpEnabled(true)
-            supportActionBar?.setDisplayShowHomeEnabled(true)
-            supportActionBar?.setHomeAsUpIndicator(resizeDrawable(resources.getDrawable(R.drawable.arrow)))
-            supportActionBar?.title = partnerName
+        //Toolbarのカスタマイズ
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayShowHomeEnabled(true)
+        supportActionBar?.setHomeAsUpIndicator(resizeDrawable(resources.getDrawable(R.drawable.arrow)))
+        supportActionBar?.title = partnerName
 
 //            var inflator: LayoutInflater = supportActionBar.themedContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
 //            var customActionBarView = inflator.inflate(R.layout.toolbar_icon)
@@ -185,9 +215,9 @@ class ChatActivity : AppCompatActivity() {
 
 //            R.layout.toolbar_icon
 
-            toolbar.setNavigationOnClickListener {
-                onBackPressed()
-            }
+        toolbar.setNavigationOnClickListener {
+            onBackPressed()
+        }
 
 //            if (intent != null) {
 //                Log.d("onCreate", intent.getIntExtra("partnerId", -1).toString())
@@ -197,7 +227,7 @@ class ChatActivity : AppCompatActivity() {
 //            val llm = LinearLayoutManager(this)
 
 //        val data: List<Message> = List(3, { index -> Message(index.toString())})
-            //TODO ダミーなので、historyを呼び出して入れる
+        //TODO ダミーなので、historyを呼び出して入れる
 //            val data: List<Message> = List(3, { timestamp -> Message(partnerId = 1, userId = 2, fromMe = 1, timestamp = timestamp, text = "hello") })
 
 //            rv.setHasFixedSize(true)
@@ -205,27 +235,6 @@ class ChatActivity : AppCompatActivity() {
 //            rv.adapter = ChatRecyclerViewAdapter(data)
 
 
-        }
-
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.menu_chat, menu)
-        return super.onCreateOptionsMenu(menu)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        var id: Int = item!!.itemId
-        if (id == R.id.action_setting) {
-            return true
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
-    fun resizeDrawable(drawable: Drawable): Drawable {
-        var b: Bitmap = (drawable as BitmapDrawable).bitmap
-        var bitmapResized = Bitmap.createScaledBitmap(b, 50, 50, false)
-        return BitmapDrawable(resources, bitmapResized)
     }
 
 
