@@ -92,6 +92,18 @@ class MinimalPairsClient {
         return api.getProfile4()
     }
 
+    fun postAlt(userId: Int, partnerId: Int, text: String): io.reactivex.Observable<Status> {
+        val retrofit = Retrofit.Builder()
+                .client(okHttpClient)
+                .baseUrl(endpoint)
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create())
+                .build()
+
+        val api = retrofit.create(MinimalPairsApi::class.java)
+        return api.postAlt(userId = userId, partnerId = partnerId, text = text)
+    }
+
     interface MinimalPairsApi {
         @GET("message/history")
         fun history(
@@ -115,5 +127,12 @@ class MinimalPairsClient {
 
         @GET("user/4")
         fun getProfile4(): io.reactivex.Observable<User>
+
+        @GET("message/create_alt")
+        fun postAlt(
+                @Query("user_id") userId: Int,
+                @Query("partner_id") partnerId: Int,
+                @Query("content") text: String
+        ): io.reactivex.Observable<Status>
     }
 }
