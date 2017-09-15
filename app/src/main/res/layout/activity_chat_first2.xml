@@ -142,50 +142,50 @@
 
     </LinearLayout>
 
-    <!--<LinearLayout-->
-        <!--android:id="@+id/before_bottombar"-->
-        <!--android:layout_width="match_parent"-->
+    <LinearLayout
+        android:id="@+id/before_bottombar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@android:color/white"
+        tools:ignore="ObsoleteLayoutParam">
+
+        <ImageButton
+            android:layout_width="51dp"
+            android:layout_height="45.25dp"
+            android:background="@android:color/white"
+            android:padding="10dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/camera"
+            tools:ignore="ContentDescription" />
+
+        <ImageButton
+            android:layout_width="46.5dp"
+            android:layout_height="46.5dp"
+            android:background="@android:color/white"
+            android:padding="10dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/stamp"
+            tools:ignore="ContentDescription" />
+
+        <EditText
+            android:id="@+id/message_edit_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:hint="メッセージを入力"
+            android:textCursorDrawable="@android:color/holo_green_dark"
+            android:textSize="15sp"
+            tools:ignore="HardcodedText" />
+
+        <!--<Button-->
+        <!--android:layout_width="wrap_content"-->
         <!--android:layout_height="wrap_content"-->
-        <!--android:layout_alignParentBottom="true"-->
-        <!--android:background="@android:color/white"-->
-        <!--tools:ignore="ObsoleteLayoutParam">-->
+        <!--android:background="#d4d4d4"-->
+        <!--android:text="送信" />-->
 
-        <!--<ImageButton-->
-            <!--android:layout_width="51dp"-->
-            <!--android:layout_height="45.25dp"-->
-            <!--android:background="@android:color/white"-->
-            <!--android:padding="10dp"-->
-            <!--android:scaleType="fitCenter"-->
-            <!--android:src="@drawable/camera"-->
-            <!--tools:ignore="ContentDescription" />-->
-
-        <!--<ImageButton-->
-            <!--android:layout_width="46.5dp"-->
-            <!--android:layout_height="46.5dp"-->
-            <!--android:background="@android:color/white"-->
-            <!--android:padding="10dp"-->
-            <!--android:scaleType="fitCenter"-->
-            <!--android:src="@drawable/stamp"-->
-            <!--tools:ignore="ContentDescription" />-->
-
-        <!--<EditText-->
-            <!--android:id="@+id/message_edit_text"-->
-            <!--android:layout_width="0dp"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_weight="1"-->
-            <!--android:focusable="true"-->
-            <!--android:focusableInTouchMode="true"-->
-            <!--android:hint="メッセージを入力"-->
-            <!--android:textCursorDrawable="@android:color/holo_green_dark"-->
-            <!--android:textSize="15sp"-->
-            <!--tools:ignore="HardcodedText" />-->
-
-        <!--&lt;!&ndash;<Button&ndash;&gt;-->
-        <!--&lt;!&ndash;android:layout_width="wrap_content"&ndash;&gt;-->
-        <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
-        <!--&lt;!&ndash;android:background="#d4d4d4"&ndash;&gt;-->
-        <!--&lt;!&ndash;android:text="送信" />&ndash;&gt;-->
-
-    <!--</LinearLayout>-->
+    </LinearLayout>
 
 </LinearLayout>
